@@ -1,0 +1,19 @@
+#!/bin/bash
+set -eu
+
+# Installs EQ/Py Swift header and Python queues in given TARGET directory
+# TARGET directory is typically T_PROJECT_ROOT/ext/EQ-Py
+# Creates TARGET directory if it does not exist
+
+if (( ${#} != 1 ))
+then
+  echo "Requires installation directory!"
+  exit 1
+fi
+  
+TARGET=$1
+
+EQPY=$( cd $( dirname $0 ) ; /bin/pwd )
+
+mkdir -pv ${TARGET}
+cp -uv ${EQPY}/{eqpy.py,EQPy.swift} ${TARGET}
