@@ -1,0 +1,6 @@
+# EQ-Py top-level .gitignore
+
+# Tooth-formatted extensions directory
+ext
+
+*.pyc
