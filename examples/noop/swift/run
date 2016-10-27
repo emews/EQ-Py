@@ -3,7 +3,6 @@ set -eu
 
 set -x
 
-export TURBINE_LOG=0 TURBINE_DEBUG=0 ADLB_DEBUG=0
 THIS=$( cd $( dirname $0 ); /bin/pwd )
 export T_PROJECT_ROOT=$( cd $THIS/.. ; /bin/pwd )
 EQP=$T_PROJECT_ROOT/ext/EQ-Py
