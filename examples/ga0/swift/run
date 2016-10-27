@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+PROCS=3
+
+THIS=$( cd $( dirname $0 ); /bin/pwd )
+export T_PROJECT_ROOT=$( cd $THIS/.. ; /bin/pwd )
+EQP=$T_PROJECT_ROOT/ext/EQ-Py
+
+set -x
+
+export PYTHONPATH=$T_PROJECT_ROOT/python:$EQP
+export TURBINE_RESIDENT_WORK_WORKERS=1
+export RESIDENT_WORK_RANKS=$(( PROCS - 2 ))
+export SWIFT_PATH=$T_PROJECT_ROOT/Tcl/Tcl-Task
+
+which swift-t
+
+set -x
+swift-t -n $PROCS -p -I $EQP -r $EQP $T_PROJECT_ROOT/swift/workflow.swift
