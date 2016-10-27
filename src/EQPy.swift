@@ -18,7 +18,7 @@ string init_package_string = "import eqpy\nimport %s\n" +
     // printf("EQPy_init_package called");
     string code = init_package_string % (packageName,packageName);
     //printf("Code is: \n%s", code);
-    @location=loc _void_py(code) => v = propagate();
+    _void_py(code) => v = propagate();
 }
 
 EQPy_stop(location loc){
