@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-PROCS=3
+PROCS=${PROCS:-3}
 
 THIS=$( cd $( dirname $0 ); /bin/pwd )
 export T_PROJECT_ROOT=$( cd $THIS/.. ; /bin/pwd )
