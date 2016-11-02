@@ -1,5 +1,9 @@
 {
-    "seed": 42,
-    "num_iter": 3,
-    "num_pop": 3
+    "seed":         42,
+    "num_iter":     6,
+    "num_pop":      3,
+    "sigma":        0.5,
+    "mate_pb":      0.5,
+    "mutate_pb":    0.5,
+    "crossover_pb": 0.5
 }

@@ -38,11 +38,13 @@ loop(int N)
     message = EQPy_get(GA);
     // printf("swift: message: %s", message);
     boolean c;
-    if (message == "COMPLETE")
+    if (message == "FINAL")
     {
-      printf("setting void") =>
+      printf("Swift: FINAL") =>
         v = make_void() =>
         c = false;
+      finals = EQPy_get(GA);
+      printf("Swift: finals: %s", finals);
     }
     else
     {
@@ -50,8 +52,7 @@ loop(int N)
       string results[];
       foreach p,i in params
       {
-        t = task(p);
-        results[i] = p+"-> "+t;
+        results[i] = task(p);
       }
       result = join(results, ";");
       // printf("swift: result: %s", result);

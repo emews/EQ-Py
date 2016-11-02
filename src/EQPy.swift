@@ -1,3 +1,8 @@
+
+/*
+   EMEWS EQPy.swift
+*/
+
 import location;
 pragma worktypedef resident_work;
 
@@ -15,7 +20,7 @@ string init_package_string = "import eqpy\nimport %s\n" +
 
 
 (void v) EQPy_init_package(location loc, string packageName){
-    // printf("EQPy_init_package called");
+    printf("EQPy_init_package(%s) ...", packageName);
     string code = init_package_string % (packageName,packageName);
     //printf("Code is: \n%s", code);
     _void_py(code) => v = propagate();
@@ -31,7 +36,7 @@ string get_string = "result = eqpy.output_q.get()";
     //printf("EQPy_get called");
     string code = get_string;
     //printf("Code is: \n%s", code);
-    result = @location=loc _string_py(code, "result");
+    result = _string_py(code, "result");
 }
 
 string put_string = """
@@ -42,7 +47,7 @@ eqpy.input_q.put('%s')\n""
     // printf("EQPy_put called with: \n%s", data);
     string code = put_string % data;
     // printf("EQPy_put code: \n%s", code);
-    @location=loc _void_py(code) => v = propagate();
+    _void_py(code) => v = propagate();
 }
 
 // Local Variables:
