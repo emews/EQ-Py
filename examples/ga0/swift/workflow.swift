@@ -1,8 +1,9 @@
 
 /**
-   workflow.swift
+   EMEWS workflow.swift
 */
 
+import assert;
 import io;
 import location;
 import string;
@@ -18,6 +19,14 @@ task(string params)
 [ "set <<result>> [ task <<params>> ]" ];
 
 location GA = locationFromRank(0);
+
+(void v)
+handshake(string settings_filename)
+{
+  message = EQPy_get(GA) =>
+    v = EQPy_put(GA, settings_filename);
+  assert(message == "Settings", "Error in handshake.");
+}
 
 (void v)
 loop(int N)
@@ -52,6 +61,9 @@ loop(int N)
 
 }
 
+settings_filename = argv("settings");
+
 EQPy_init_package(GA, "deap_ga") =>
+  handshake(settings_filename) =>
   loop(N) =>
   EQPy_stop(GA);

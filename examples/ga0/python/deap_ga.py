@@ -1,9 +1,13 @@
-import threading
-import random
-import numpy as np
-import time
-import pandas as pd
+
+# GA0 DEAP_GA
+
+import json
 import math
+import numpy as np
+import random
+import sys
+import threading
+import time
 
 from deap import base
 from deap import creator
@@ -122,14 +126,13 @@ def run():
     :param seed: random seed
     :param csv_file_name: csv file name (e.g., "params_for_deap.csv")
     """
-    eqpy.OUT_put("Params")
-    params = eqpy.IN_get()
 
-    # parse params
-    (num_iter, num_pop, seed, csv_file_name) = eval('{}'.format(params))
-    random.seed(seed)
-    global df_params
-    df_params = read_in_params_csv(csv_file_name)
+    eqpy.OUT_put("Settings")
+    settings_filename = eqpy.IN_get()
+    load_settings(settings_filename)
+
+    # parse settings # num_iter, num_pop, seed,
+
 
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
     creator.create("Individual", list, fitness=creator.FitnessMin)
@@ -161,3 +164,18 @@ def run():
     eqpy.OUT_put("FINAL")
     # return the final population
     eqpy.OUT_put("{0}\n{1}\n{2}".format(create_list_of_lists_string(pop), ';'.join(fitnesses), log))
+
+def load_settings(settings_filename):
+    global num_iter, num_pop
+    print("Reading settings: '%s'" % settings_filename)
+    with open(settings_filename) as fp:
+        settings = json.load(fp)
+    try:
+        seed     = settings["seed"]
+        num_iter = settings["num_iter"]
+        num_pop  = settings["num_pop"]
+    except KeyError as e:
+        print("Settings file (%s) does not contain key: %s" % (settings_filename, str(e)))
+        sys.exit(1)
+    random.seed(seed)
+    print("Settings loaded.")
