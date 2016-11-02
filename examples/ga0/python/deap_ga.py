@@ -16,8 +16,7 @@ from deap import algorithms
 
 import eqpy
 
-# Global settings
-num_iter = num_pop = sigma = mate_pb = mutate_pb = None
+global_settings = ["num_iter", "num_pop", "sigma", "mate_pb", "mutate_pb"]
 
 def i2s(i):
     """ Convert individual to string """
@@ -123,21 +122,15 @@ def run():
     eqpy.OUT_put("{0}\n{1}\n{2}".format(create_list_of_lists_string(pop), ';'.join(fitnesses), log))
 
 def load_settings(settings_filename):
-    global num_iter, num_pop, sigma, mate_pb, mutate_pb
     print("Reading settings: '%s'" % settings_filename)
     with open(settings_filename) as fp:
         settings = json.load(fp)
     try:
-        seed         = settings["seed"]
-        num_iter     = settings["num_iter"]
-        num_pop      = settings["num_pop"]
-        sigma        = settings["sigma"]
-        mate_pb      = settings["mate_pb"]
-        mutate_pb    = settings["mutate_pb"]
-        crossover_pb = settings["crossover_pb"]
+        for s in global_settings:
+            globals()[s] = settings[s]
+        random.seed(settings["seed"])
     except KeyError as e:
         print("Settings file (%s) does not contain key: %s" % (settings_filename, str(e)))
         sys.exit(1)
     print "num_iter: ", num_iter
-    random.seed(seed)
     print("Settings loaded.")
