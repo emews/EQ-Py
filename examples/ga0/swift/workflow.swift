@@ -64,7 +64,7 @@ loop(int N)
 
 settings_filename = argv("settings");
 
-EQPy_init_package(GA, "deap_ga") =>
+EQPy_init_package(GA, "algorithm") =>
   handshake(settings_filename) =>
   loop(N) =>
   EQPy_stop(GA);
