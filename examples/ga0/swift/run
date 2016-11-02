@@ -17,4 +17,4 @@ export SWIFT_PATH=$T_PROJECT_ROOT/Tcl/Tcl-Task
 which swift-t
 
 set -x
-swift-t -n $PROCS -p -I $EQP -r $EQP $T_PROJECT_ROOT/swift/workflow.swift
+swift-t -n $PROCS -p -I $EQP -r $EQP $T_PROJECT_ROOT/swift/workflow.swift $*
