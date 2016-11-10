@@ -16,6 +16,7 @@ from deap import algorithms
 
 import eqpy
 
+# Global variable names we are going to set from the JSON settings file
 global_settings = ["num_iter", "num_pop", "sigma", "mate_pb", "mutate_pb"]
 
 def i2s(i):
