@@ -1,5 +1,5 @@
 
-# GA0 DEAP_GA
+# GA0 ALGORITHM.PY
 
 import json
 import math
