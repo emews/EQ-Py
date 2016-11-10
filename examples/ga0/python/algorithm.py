@@ -4,6 +4,7 @@
 import json
 import math
 import numpy as np
+import os
 import random
 import sys
 import threading
@@ -124,8 +125,13 @@ def run():
 
 def load_settings(settings_filename):
     print("Reading settings: '%s'" % settings_filename)
-    with open(settings_filename) as fp:
-        settings = json.load(fp)
+    try:
+        with open(settings_filename) as fp:
+            settings = json.load(fp)
+    except IOError as e:
+        print("Could not open: '%s'" % settings_filename)
+        print("PWD is: '%s'" % os.getcwd())
+        sys.exit(1)
     try:
         for s in global_settings:
             globals()[s] = settings[s]
