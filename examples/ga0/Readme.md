@@ -44,3 +44,6 @@ In the `plots/` directory:
 * `f.m`: The implementation of the objective function in Octave, used only for visualization
 * `show_f.m`: Make a contour plot from `f.m`
 
+#### Example output
+
+Good run with 
