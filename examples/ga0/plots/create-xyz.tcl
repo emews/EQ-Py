@@ -1,5 +1,7 @@
 #!/usr/bin/env tclsh
 
+# CREATE XYZ
+
 set fdx [ open "x.dat" "w" ]
 set fdy [ open "y.dat" "w" ]
 set fdz [ open "z.dat" "w" ]
