@@ -46,4 +46,10 @@ In the `plots/` directory:
 
 #### Example output
 
-Good run with 
+Run with σ = 0.5:
+
+https://github.com/emews/EQ-Py/raw/master/examples/ga0/plots/plot-s01.png
+
+Run with σ = 0.1:
+
+https://github.com/emews/EQ-Py/blob/master/examples/ga0/plots/plot-s05.png
