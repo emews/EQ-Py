@@ -1,6 +1,9 @@
 #!/bin/sh
 set -eu
 
+# RUN
+# Runs the GA0 workflow
+
 PROCS=${PROCS:-3}
 
 THIS=$( cd $( dirname $0 ); /bin/pwd )

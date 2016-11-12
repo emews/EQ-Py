@@ -13,6 +13,7 @@ import EQPy;
 
 N = 10;
 
+/** The objective function */
 (string result)
 task(string params)
 "task" "0.1"
