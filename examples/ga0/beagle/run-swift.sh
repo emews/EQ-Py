@@ -26,6 +26,7 @@ export TURBINE_OUTPUT_ROOT=$PWD
 export TURBINE_OUTPUT_FORMAT=out-%Q
 export WALLTIME=01:00:00
 PROCS=3
-swift-t -m cray -n $PROCS -p -I $EQP -r $EQP \
+swift-t -m cray -p -I $EQP -r $EQP \
+        -n $PROCS \
         $T_PROJECT_ROOT/swift/workflow.swift \
         --settings=$T_PROJECT_ROOT/swift/settings.json
