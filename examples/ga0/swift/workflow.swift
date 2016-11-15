@@ -6,6 +6,7 @@
 import assert;
 import io;
 import location;
+import python;
 import string;
 import sys;
 
@@ -16,8 +17,16 @@ N = 10;
 /** The objective function */
 (string result)
 task(string params)
-"task" "0.1"
-[ "set <<result>> [ task <<params>> ]" ];
+{
+  result = python(
+"""
+from math import sin,cos
+x,y=%s
+result = sin(4*x)+sin(4*y)+-2*x+x**2-2*y+y**2
+""" % params,
+"repr(result)"
+  );
+}
 
 location GA = locationFromRank(0);
 
