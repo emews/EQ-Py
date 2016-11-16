@@ -49,7 +49,7 @@ In the +plots/+ directory:
 
 Run with σ = 0.5:
 
-image::plots/plot-s01.png[]
+image::plots/plot-s01.png[width=400]
 
 Run with σ = 0.1:
 
