@@ -3,9 +3,10 @@
 
 There are currently two examples (see their Readmes):
 
-* Example: [noop](https://github.com/emews/EQ-Py/tree/master/examples/noop)
+* Example: https://github.com/emews/EQ-Py/tree/master/examples/noop[+noop+]
 +
 This is only for those interested in learning how the EMEWS queues work.
-* Example: [ga0](https://github.com/emews/EQ-Py/tree/master/examples/ga0)
+
+* Example: https://github.com/emews/EQ-Py/tree/master/examples/ga0[+ga0+]
 +
 A "pure math" genetic algorithm in Swift
