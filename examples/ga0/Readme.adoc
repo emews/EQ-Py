@@ -47,10 +47,12 @@ In the +plots/+ directory:
 
 ==== Example output images
 
-1. Run with σ = 0.5:
+// align=center only works in HTML output, not on GitHub
 
+. Run with σ = 0.5:
++
 image::plots/plot-s05.png[width=400,align="center"]
-
-2. Run with σ = 0.1:
-
++
+. Run with σ = 0.1:
++
 image::plots/plot-s01.png[width=400,align="center"]
