@@ -1,10 +1,11 @@
 
-= HELLO WORLD
-
-# EQ-Py
-EMEWS Queues - Python implementation
+= EQ-Py: EMEWS Queues - Python implementation
 
 There are currently two examples (see their Readmes):
 
 * Example: [noop](https://github.com/emews/EQ-Py/tree/master/examples/noop)
++
+This is only for those interested in learning how the EMEWS queues work.
 * Example: [ga0](https://github.com/emews/EQ-Py/tree/master/examples/ga0)
++
+A "pure math" genetic algorithm in Swift
