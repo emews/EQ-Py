@@ -80,3 +80,11 @@ Simply run:
 ./setup.sh
 beagle/run-swift.sh
 ----
+
+=== Midway
+
+Simply run:
+----
+./setup.sh
+swift/run --settings=swift/settings.json
+----
