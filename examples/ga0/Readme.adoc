@@ -3,10 +3,12 @@
 
 = GA0: Genetic Algorithm, Difficulty Zero
 
-== Usage instructions
+== Quick start instructions
 
-1. Do +./setup.sh+
-2. Do +swift/run --settings=swift/settings.json+
+----
+./setup.sh
+swift/run --settings=swift/settings.json
+----
 
 == Overview
 
