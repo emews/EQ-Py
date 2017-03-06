@@ -40,7 +40,7 @@ string get_string = "result = eqpy.output_q.get()";
 }
 
 string put_string = """
-eqpy.input_q.put('%s')\n""
+eqpy.input_q.put("%s")\n""
 """;
 
 (void v) EQPy_put(location loc, string data){
