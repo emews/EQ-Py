@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+set -x
+
+THIS=$( cd $( dirname $0 ); /bin/pwd )
+export T_PROJECT_ROOT=$( cd $THIS/.. ; /bin/pwd )
+EQP=$T_PROJECT_ROOT/ext/EQ-Py
+
+export PYTHONPATH=$T_PROJECT_ROOT/python:$EQP
+export TURBINE_RESIDENT_WORK_WORKERS=1
+
+set -x
+swift-t -n 3 -p -I $EQP -r $EQP $T_PROJECT_ROOT/swift/workflow.swift
