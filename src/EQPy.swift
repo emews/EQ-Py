@@ -14,12 +14,7 @@ pragma worktypedef resident_work;
 (string output) _string_py(string code, string expr) "turbine" "0.1.0"
     [ "set <<output>> [ turbine::python 1 <<code>> <<expr>> ]" ];
 
-//string init_package_string = "import eqpy\nimport %s\n" +
-//"import threading\n" +
-//"p = threading.Thread(target=%s.run)\np.start()";
-
 string init_package_string = "import eqpy\neqpy.init('%s')";
-
 
 (void v) EQPy_init_package(location loc, string packageName){
     //printf("EQPy_init_package(%s) ...", packageName);

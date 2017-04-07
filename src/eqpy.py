@@ -23,7 +23,6 @@ class ThreadRunner(threading.Thread):
         self.status = None
 
     def run(self):
-        print("running")
         try:
             self.runnable.run()
         except BaseException:
