@@ -20,7 +20,7 @@ string init_package_string = "import eqpy\neqpy.init('%s')";
     //printf("EQPy_init_package(%s) ...", packageName);
     string code = init_package_string % (packageName); //,packageName);
     //printf("Code is: \n%s", code);
-    _void_py(code) => v = propagate();
+    @location=loc _void_py(code) => v = propagate();
 }
 
 EQPy_stop(location loc){
@@ -33,7 +33,7 @@ string get_string = "result = eqpy.output_q_get()";
     //printf("EQPy_get called");
     string code = get_string;
     //printf("Code is: \n%s", code);
-    result = _string_py(code, "result");
+    result = @location=loc _string_py(code, "result");
 }
 
 string put_string = """
@@ -44,7 +44,7 @@ eqpy.input_q.put("%s")\n""
     // printf("EQPy_put called with: \n%s", data);
     string code = put_string % data;
     // printf("EQPy_put code: \n%s", code);
-    _void_py(code) => v = propagate();
+    @location=loc _void_py(code) => v = propagate();
 }
 
 // Local Variables:

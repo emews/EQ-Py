@@ -15,6 +15,17 @@ output_q = q.Queue()
 
 p = None
 aborted = False
+wait_info = None
+
+class WaitInfo:
+
+    def __init__(self):
+        self.wait = 4
+
+    def getWait(self):
+        if self.wait < 60:
+            self.wait += 1
+        return self.wait
 
 class ThreadRunner(threading.Thread):
 
@@ -31,16 +42,18 @@ class ThreadRunner(threading.Thread):
             self.exc = traceback.format_exc()
 
 def init(pkg):
-    global p
+    global p, wait_info
+    wait_info = WaitInfo()
     imported_pkg = importlib.import_module(pkg)
     p = ThreadRunner(imported_pkg)
     p.start()
 
 def output_q_get():
     global output_q, aborted
+    wait = wait_info.getWait()
     while p.is_alive():
         try:
-            result = output_q.get(True, 60)
+            result = output_q.get(True, wait)
             break
         except q.Empty:
             pass
@@ -59,6 +72,6 @@ def OUT_put(string_params):
     output_q.put(string_params)
 
 def IN_get():
-    global input_q
+    #global input_q
     result = input_q.get()
     return result
