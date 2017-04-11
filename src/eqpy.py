@@ -14,20 +14,21 @@ input_q = q.Queue()
 output_q = q.Queue()
 
 p = None
+aborted = False
 
 class ThreadRunner(threading.Thread):
 
     def __init__(self, runnable):
         threading.Thread.__init__(self)
         self.runnable = runnable
-        self.status = None
+        self.exc = None
 
     def run(self):
         try:
             self.runnable.run()
         except BaseException:
             # tuple of type, value and traceback
-            self.status = traceback.format_exc()
+            self.exc = traceback.format_exc()
 
 def init(pkg):
     global p
@@ -36,16 +37,21 @@ def init(pkg):
     p.start()
 
 def output_q_get():
-    global output_q
-    while p.isAlive():
+    global output_q, aborted
+    while p.is_alive():
         try:
             result = output_q.get(True, 60)
             break
         except q.Empty:
             pass
     else:
-        #lines = traceback.format_exception(p.status[0], p.status[1], p.status[0])
-        result = "{}\n{}".format(EQPY_ABORT, p.status)
+        # if we haven't yet set the abort flag then
+        # return that, otherwise return the formated exception
+        if aborted:
+            result = p.exc
+        else:
+            result = EQPY_ABORT
+        aborted = True
 
     return result
 

@@ -12,18 +12,17 @@ import python;
 
 import EQPy;
 
-string tproot = getenv("T_PROJECT_ROOT");
-location L = locationFromRank(1);
-location W = locationFromRank(0);
+string emews_root = getenv("EMEWS_PROJECT_ROOT");
+string algo = argv("algorithm");
 
-(void v) loop()
+(void v) loop(location loc)
 {
   printf("Beginning loop.");
   for (boolean b = true, int i = 1;
        b;
        b=c, i = i + 1)
   {
-    result = EQPy_get(L);
+    result = EQPy_get(loc);
     printf("swift: result: %s", result);
     boolean c;
     if (result == "FINAL")
@@ -31,19 +30,27 @@ location W = locationFromRank(0);
       printf("setting void") =>
         v = propagate() =>
         c = false;
+    } else if (result == "EQPY_ABORT") {
+        string why = EQPy_get(loc);
+        printf("%s", why) =>
+        v = propagate() =>
+        c = false;
     }
     else
     {
       data = fromint(toint(result) + 1);
       printf("swift: data: %s", data);
-      EQPy_put(L, data) => c = true;
+      EQPy_put(loc, data) => c = true;
     }
   }
 
 }
 
-printf("WORKFLOW!");
+main() {
+  printf("WORKFLOW!");
 
-EQPy_init_package(L, "algorithm") =>
-  loop() =>
+  location L = locationFromRank(1);
+  EQPy_init_package(L, algo) =>
+  loop(L) =>
   EQPy_stop(L);
+}
