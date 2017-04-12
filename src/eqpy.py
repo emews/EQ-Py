@@ -32,7 +32,7 @@ class ThreadRunner(threading.Thread):
     def __init__(self, runnable):
         threading.Thread.__init__(self)
         self.runnable = runnable
-        self.exc = None
+        self.exc = "Exited normally"
 
     def run(self):
         try:
