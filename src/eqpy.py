@@ -51,7 +51,10 @@ def init(pkg):
 def output_q_get():
     global output_q, aborted
     wait = wait_info.getWait()
-    while p.is_alive():
+    # thread's runnable might put work on queue
+    # and finish, so it would not longer be alive
+    # but something remains on the queue to be pulled
+    while p.is_alive() or not output_q.empty():
         try:
             result = output_q.get(True, wait)
             break
