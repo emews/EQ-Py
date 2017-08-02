@@ -13,8 +13,7 @@ EQP=$T_PROJECT_ROOT/ext/EQ-Py
 set -x
 
 export PYTHONPATH=$T_PROJECT_ROOT/python:$EQP
-export TURBINE_RESIDENT_WORK_WORKERS=1
-export RESIDENT_WORK_RANKS=$(( PROCS - 2 ))
+export TURBINE_RESIDENT_WORK_WORKERS=1 # Number of workers of this type
 export SWIFT_PATH=$T_PROJECT_ROOT/Tcl/Tcl-Task
 
 which swift-t
