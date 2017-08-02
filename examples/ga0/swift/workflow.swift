@@ -28,7 +28,7 @@ result = sin(4*x)+sin(4*y)+-2*x+x**2-2*y+y**2
   );
 }
 
-location GA = locationFromRank(0);
+location GA = locationFromRank(turbine_workers()-1);
 
 (void v)
 handshake(string settings_filename)
