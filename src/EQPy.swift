@@ -23,8 +23,10 @@ string init_package_string = "import eqpy\neqpy.init('%s')";
     @location=loc _void_py(code) => v = propagate();
 }
 
+(void v)
 EQPy_stop(location loc){
-    // do nothing
+    // do nothing but set the void
+    v = propagate();
 }
 
 string get_string = "result = eqpy.output_q_get()";
