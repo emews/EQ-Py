@@ -1,15 +1,18 @@
 #!/bin/sh
 set -eu
 
+# RUN
+# Swift/T runner script
+# Sets up paths and runs Swift/T
+
 set -x
 
-THIS=$( cd $( dirname $0 ); /bin/pwd )
-export T_PROJECT_ROOT=$( cd $THIS/.. ; /bin/pwd )
-EQP=$T_PROJECT_ROOT/ext/EQ-Py
+THIS=$( readlink --canonicalize $( dirname $0 ) )
+export EMEWS_PROJECT_ROOT=$( readlink --canonicalize $THIS/.. )
+EQPy=$( readlink --canonicalize $EMEWS_PROJECT_ROOT/../../src )
 
-export PYTHONPATH=$T_PROJECT_ROOT/python:$EQP
+export PYTHONPATH=$EMEWS_PROJECT_ROOT/python:$EQPy
 export TURBINE_RESIDENT_WORK_WORKERS=1
 
-set -x
-swift-t -n 3 -p -I $EQP -r $EQP $T_PROJECT_ROOT/swift/workflow.swift \
-  --algorithm="algorithm"
+swift-t -n 3 -p -I $EQPy -r $EQPy \
+        $EMEWS_PROJECT_ROOT/swift/workflow.swift --algorithm="algorithm"
