@@ -16,9 +16,12 @@ This runs a real EA with http://deap.readthedocs.io/en/master[DEAP].  The object
 
 _sin(4x) + sin(4y) - 2x + x² - 2y + y²_
 
+It is expressed for the workflow as a Python snippet in workflow.swift
+
+////
 It is expressed for the workflow in https://github.com/emews/EQ-Py/blob/master/examples/ga0/Tcl/Tcl-Task/task.tcl[task.tcl]
 and for plotting in https://github.com/emews/EQ-Py/blob/master/examples/ga0/plots/f.m[f.m]
-
+////
 == File index
 
 === Entry points
