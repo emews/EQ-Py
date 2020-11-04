@@ -175,7 +175,7 @@ def run():
         params = json.load(f_in)
 
     global pool
-    pool = Pool("/tmp", rank_type="leaders")
+    pool = Pool("/tmp", rank_type="workers")
 
     random.seed(params['seed'])
     ga_params_file = os.path.join(os.environ.get("EMEWS_PROJECT_ROOT"), params['ga_params_file'])

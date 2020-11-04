@@ -14,8 +14,10 @@ foreach rank, i in [0:available_ranks - 1] {
 }
 
 location leader_locations[];
+int max_leader = size(hostmapLeaders()) - 1;
 foreach rank, i in hostmapLeaders() {
     // printf("hostmap rank: %d", rank);
+    if (i > max_leader) break;
     leader_locations[i] = rank2location(rank);
 }
 
