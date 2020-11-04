@@ -46,7 +46,6 @@ string algo_params = argv("algo_params");
             v = propagate() =>
             c = false;
         } else if (payload_type == "pymap") {
-            printf(payload_str);
             string pymap_result[] = run_pymap(payload); 
             EQPy_put(ME, join(pymap_result, ";")) => c = true;
         }

@@ -174,8 +174,9 @@ def run():
     with open(algo_params_file) as f_in:
         params = json.load(f_in)
 
+    tmp_dir = os.path.join(os.environ.get("TURBINE_OUTPUT"), 'tmp')  
     global pool
-    pool = Pool("/tmp", rank_type="workers")
+    pool = Pool(tmp_dir, rank_type="leaders")
 
     random.seed(params['seed'])
     ga_params_file = os.path.join(os.environ.get("EMEWS_PROJECT_ROOT"), params['ga_params_file'])

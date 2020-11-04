@@ -14,11 +14,11 @@ foreach rank, i in [0:available_ranks - 1] {
 }
 
 location leader_locations[];
-int max_leader = size(hostmapLeaders()) - 1;
+int max_leader_idx = size(hostmapLeaders()) - 1;
 foreach rank, i in hostmapLeaders() {
-    // printf("hostmap rank: %d", rank);
-    if (i > max_leader) break;
-    leader_locations[i] = rank2location(rank);
+    if (i < max_leader_idx) {
+      leader_locations[i] = rank2location(rank);
+    }
 }
 
 // chunk_idx, total_chunks, step, data_dir
@@ -35,7 +35,6 @@ app (void o) rmf(string f) {
     int total_chunks = min_integer(max_node, arg_length);
     int max_idx = total_chunks - 1;
     // printf("input_dir: %s", data_dir);
-    printf("max idx: %d", max_idx);
     foreach i in [0:max_idx] {
         string out_fname = "%s/out_%d.txt" % (std_out_dir, i);
         string err_fname = "%s/err_%d.txt" % (std_out_dir, i);

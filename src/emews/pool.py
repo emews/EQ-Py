@@ -15,6 +15,9 @@ class Pool:
         if rank_type not in ['workers', 'leaders']:
             raise ValueError("rank_type must be one of 'workers' or 'leaders'")
 
+        if not os.path.exists(tmp_dir):
+            os.makedirs(tmp_dir)
+
     def __read_result(self, fname):
         r = None
         with open(fname, 'rb') as f_in:

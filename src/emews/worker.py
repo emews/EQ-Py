@@ -4,11 +4,20 @@ import os
 import math
 
 
-def chunker(vals: list, chunk_size: int):
-    # For item i in a range that is a length of l,
-    for i in range(0, len(vals), chunk_size):
-        # Create an index range for l of n items:
-        yield vals[i:i + chunk_size]
+def chunker(li, total_chunks):
+    item_count = len(li)
+    num_chunks = item_count if total_chunks > item_count else total_chunks
+    chunk_size = math.floor(item_count / num_chunks)
+    remainder = item_count - (chunk_size * num_chunks)
+    used_chunk_size = chunk_size + 1
+    r = []
+    for i in range(num_chunks):
+        cs = used_chunk_size - 1 if i >= remainder else used_chunk_size
+        offset = remainder if i >= remainder else 0
+        start = i * cs + offset
+        end = start + cs
+        r.append(li[start : end])
+    return r
 
 
 def run(chunk_idx: int, total_chunks: int, step: int, data_dir: str):
@@ -20,11 +29,12 @@ def run(chunk_idx: int, total_chunks: int, step: int, data_dir: str):
     with open(func_path, 'rb') as f_in:
         func = dill.load(f_in)
 
+    # print('chunk_idx: {}, total_chunks: {}, arg length: {}'.format(chunk_idx, total_chunks, len(args)))
+
     if total_chunks == 1:
         chunk = args
     else:
-        chunk_size = math.ceil(len(args) / total_chunks)
-        chunk = list(chunker(args, chunk_size))[chunk_idx]
+        chunk = chunker(args, total_chunks)[chunk_idx]
 
     result = []
     for arg in chunk:
