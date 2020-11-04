@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "x",
+        "type" : "float",
+        "lower" : -2.0,
+        "upper" : 2.0,
+        "sigma" : 0.2
+    },
+
+    {
+        "name" : "y",
+        "type" : "float",
+        "lower" : -2.0,
+        "upper" : 2.0,
+        "sigma" : 0.2
+    }
+]

@@ -1,0 +1,9 @@
+{
+    "seed":         42,
+    "num_iter":     6,
+    "num_pop":      22,
+    "cx_pb":      0.5,
+    "mutate_pb":    0.5,
+    "ga_params_file" : "data/ga_params.json",
+    "strategy" : "simple"
+}

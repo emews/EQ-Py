@@ -15,3 +15,8 @@ to "catch" such in the swift script.
 * Example: https://github.com/emews/EQ-Py/tree/master/examples/ga0[+ga0+]
 +
 A "pure math" genetic algorithm in Swift
+
+== Tests
+
+`python -m unittest tests.emews_tests`
+
