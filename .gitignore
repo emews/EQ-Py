@@ -7,3 +7,5 @@ ext
 
 .vscode
 __pycache__
+
+.pynb_checkpoints

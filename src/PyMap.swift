@@ -43,6 +43,7 @@ app (void o) rmf(string f) {
         file err <err_fname>;
         location l = locations[i];
         string result_f = "%s/result_%d.dill" % (data_dir, i);
+        // printf("%s\n", result_f);
         (out,err) = @location=l app_run_doe_worker(script_sh, i, total_chunks, step, data_dir) =>
         results[i] = result_f;
     }

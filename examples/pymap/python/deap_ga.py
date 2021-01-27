@@ -95,9 +95,10 @@ def queue_map(obj_func, pops):
     # a list. However, we need to make the type actual list for
     # dill to work with it
     args = [list(x) for x in pops]
-    # printf('args: {}'.format(args))
     obj_vals = pool.map(objfunc, args)
-    # printf('obj_vals: {}'.format(obj_vals))
+    if obj_vals[0] == 'FAILURE':
+        import traceback
+        print(''.join(traceback.format_exception(obj_vals[1][0], obj_vals[1][1], obj_vals[1][2])), flush=True)
     # TODO determine if max'ing or min'ing and use -9999999 or 99999999
     return [(float(x),) if not math.isnan(float(x)) else (float(99999999),) for x in obj_vals]
 
@@ -176,7 +177,7 @@ def run():
 
     tmp_dir = os.path.join(os.environ.get("TURBINE_OUTPUT"), 'tmp')  
     global pool
-    pool = Pool(tmp_dir, rank_type="leaders")
+    pool = Pool(tmp_dir, rank_type="workers")
 
     random.seed(params['seed'])
     ga_params_file = os.path.join(os.environ.get("EMEWS_PROJECT_ROOT"), params['ga_params_file'])

@@ -41,6 +41,7 @@ class Pool:
             self.step += 1
             # result is semicolon delimited list of dilled files
             results = result.split(';')
+            # print(result, flush=True)
             lists = [self.__read_result(x) for x in results]
             return [y for x in lists for y in x]
         except Exception:

@@ -38,7 +38,7 @@ def run(chunk_idx: int, total_chunks: int, step: int, data_dir: str):
 
     result = []
     for arg in chunk:
-        result.append(func(arg))
+        result.append(func(*arg))
 
     result_path = os.path.join(data_dir, 'result_{}.dill'.format(chunk_idx))
     with open(result_path, 'wb') as f_out:
