@@ -85,7 +85,7 @@ def create_list_of_json_strings(list_of_lists, super_delim=";"):
 #     return obj_vals
 
 
-def queue_map(obj_func, pops):
+def queue_map(ignored_obj_func, pops):
     # Note that the obj_func is not used
     # sending data that looks like:
     # [[a,b,c,d],[e,f,g,h],...]
